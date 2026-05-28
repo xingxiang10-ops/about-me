@@ -58,7 +58,7 @@ const Header: React.FC = () => {
   return (
     <header ref={headerRef} className="header glass-panel" style={{ opacity: 0 }}>
       <div className="header-content">
-        <h1 ref={nameRef} className="name text-gradient">
+        <h1 ref={nameRef} className="name">
           {nameText.split('').map((char, i) => (
             <span key={i} className="letter" style={{ opacity: 0, display: 'inline-block' }}>
               {char === ' ' ? '\u00A0' : char}
