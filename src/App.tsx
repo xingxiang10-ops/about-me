@@ -11,15 +11,16 @@ const App: React.FC = () => {
   const footerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    if (footerRef.current) {
-      animate(footerRef.current, {
-        opacity: [0, 1],
-        translateY: [20, 0],
-        duration: 600,
-        delay: 1500,
-        ease: 'outQuart',
-      });
-    }
+    if (!footerRef.current) return;
+
+    // Footer fade in
+    animate(footerRef.current, {
+      opacity: [0, 1],
+      translateY: [15, 0],
+      duration: 600,
+      delay: 1800,
+      ease: 'outQuart',
+    });
   }, []);
 
   return (

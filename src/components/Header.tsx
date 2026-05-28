@@ -1,78 +1,82 @@
 import React, { useEffect, useRef } from 'react';
 import { Mail, Phone, MapPin } from 'lucide-react';
-import { animate, stagger } from 'animejs';
+import { stagger, createTimeline } from 'animejs';
 import './Header.css';
 
 const Header: React.FC = () => {
   const headerRef = useRef<HTMLDivElement>(null);
-  const nameText = 'HONG XING XIANG';
 
   useEffect(() => {
     if (!headerRef.current) return;
     const root = headerRef.current;
 
-    // Fade in the whole header panel
-    animate(root, {
-      opacity: [0, 1],
-      translateY: [30, 0],
-      duration: 800,
-      ease: 'outExpo',
+    const tl = createTimeline({
+      defaults: { ease: 'outExpo' },
     });
 
-    // Animate the name — scale up with a subtle bounce
+    // 1. Panel slides up and fades in
+    tl.add(root, {
+      opacity: [0, 1],
+      translateY: [40, 0],
+      duration: 900,
+    }, 0);
+
+    // 2. Name slides up with scale
     const nameEl = root.querySelector('.name');
     if (nameEl) {
-      animate(nameEl, {
+      tl.add(nameEl, {
         opacity: [0, 1],
-        translateY: [20, 0],
-        scale: [0.9, 1],
-        duration: 700,
-        delay: 200,
-        ease: 'outExpo',
-      });
+        translateY: [25, 0],
+        scale: [0.92, 1],
+        duration: 800,
+      }, 300);
     }
 
-    // Animate the title
-    const titleEl = root.querySelector('.title');
-    if (titleEl) {
-      animate(titleEl, {
+    // 3. Subtitle fades in
+    const subtitle = root.querySelector('.subtitle');
+    if (subtitle) {
+      tl.add(subtitle, {
         opacity: [0, 1],
         translateY: [15, 0],
-        duration: 700,
-        delay: 500,
+        duration: 600,
         ease: 'outQuart',
-      });
+      }, 550);
     }
 
-    // Stagger contact items using CSS selector scoped to header
-    animate('.header .contact-item', {
+    // 4. Contact items stagger in
+    tl.add('.header .contact-item', {
       opacity: [0, 1],
-      translateY: [20, 0],
+      translateY: [15, 0],
+      scale: [0.9, 1],
       duration: 500,
-      delay: stagger(80, { start: 700 }),
+      delay: stagger(70),
       ease: 'outQuart',
-    });
+    }, 750);
+
+    tl.init();
   }, []);
 
   return (
     <header ref={headerRef} className="header glass-panel" style={{ opacity: 0 }}>
       <div className="header-content">
         <h1 className="name" style={{ opacity: 0 }}>
-          {nameText}
+          HONG XING XIANG
         </h1>
-        <p className="title" style={{ opacity: 0 }}>Software Systems Development Student &amp; IT Professional</p>
+        <p className="subtitle" style={{ opacity: 0 }}>
+          Software Systems Development Student &amp; IT Professional
+        </p>
         
         <div className="contact-info">
           <a href="tel:+601123407130" className="contact-item" style={{ opacity: 0 }}>
-            <Phone size={18} />
+            <Phone size={16} />
             <span>+6011-23407130</span>
           </a>
           <a href="mailto:xingxiang10@gmail.com" className="contact-item" style={{ opacity: 0 }}>
-            <Mail size={18} />
+            <Mail size={16} />
             <span>xingxiang10@gmail.com</span>
           </a>
           <div className="contact-item" style={{ opacity: 0 }}>
-            <MapPin size={18} />
+            <MapPin size={16} />
             <span>Malaysia</span>
           </div>
         </div>
