@@ -1,33 +1,34 @@
 .timeline-section {
-  padding: 2.5rem;
-  margin-bottom: 2rem;
+  padding: 2rem;
 }
 
 .section-header {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
   border-bottom: 1px solid var(--border-color);
-  padding-bottom: 1rem;
 }
 
 .section-icon {
   color: var(--accent-primary);
+  flex-shrink: 0;
 }
 
 .section-title {
   margin: 0;
-  font-size: 1.5rem;
-  color: #fff;
+  font-size: 1.25rem;
+  color: #ffffff;
+  font-weight: 600;
 }
 
 .timeline {
   position: relative;
-  padding-left: 1.5rem;
+  padding-left: 1.75rem;
 }
 
-/* Animated timeline line — replaces ::before pseudo-element */
+/* Animated timeline line */
 .timeline-line {
   position: absolute;
   left: 0;
@@ -36,9 +37,9 @@
   width: 2px;
   background: linear-gradient(
     to bottom,
-    var(--accent-secondary),
-    var(--accent-primary),
-    var(--border-color)
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.05)
   );
   border-radius: 2px;
   will-change: transform;
@@ -46,7 +47,7 @@
 
 .timeline-item {
   position: relative;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.75rem;
 }
 
 .timeline-item:last-child {
@@ -55,78 +56,84 @@
 
 .timeline-dot {
   position: absolute;
-  left: -1.85rem;
-  top: 0.25rem;
-  width: 12px;
-  height: 12px;
+  left: -2.05rem;
+  top: 0.3rem;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background: var(--accent-secondary);
-  border: 2px solid var(--bg-base);
-  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
-  transition: all 0.3s ease;
+  background: var(--bg-base);
+  border: 2px solid var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+  transition: all 0.35s ease;
   will-change: transform;
 }
 
 .timeline-item:hover .timeline-dot {
   background: var(--accent-primary);
-  box-shadow: 0 0 0 6px rgba(139, 92, 246, 0.2), 0 0 20px rgba(139, 92, 246, 0.3);
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.15), 0 0 15px rgba(255, 255, 255, 0.2);
+  transform: scale(1.2);
 }
 
 .timeline-content {
   background: rgba(255, 255, 255, 0.02);
-  padding: 1.5rem;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.03);
-  transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+  padding: 1.25rem 1.5rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  transition: all 0.35s ease;
   will-change: transform, opacity;
 }
 
 .timeline-item:hover .timeline-content {
-  transform: translateX(4px);
-  background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(139, 92, 246, 0.1);
+  transform: translateX(6px);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .timeline-header {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
+  gap: 0.4rem;
+  margin-bottom: 0.4rem;
 }
 
 @media (min-width: 640px) {
   .timeline-header {
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
   }
 }
 
 .company {
-  font-size: 1.25rem;
-  color: #e2e8f0;
+  font-size: 1.1rem;
+  color: #ffffff;
   margin: 0;
   font-family: var(--font-heading);
+  font-weight: 600;
 }
 
 .period {
-  font-size: 0.85rem;
-  color: var(--accent-primary);
-  background: rgba(139, 92, 246, 0.1);
-  padding: 0.25rem 0.75rem;
-  border-radius: 999px;
+  font-size: 0.78rem;
+  color: #000000;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0.2rem 0.65rem;
+  border-radius: 6px;
   white-space: nowrap;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
 .role {
-  font-size: 1rem;
-  color: #94a3b8;
-  margin: 0 0 1rem 0;
+  font-size: 0.9rem;
+  color: #a3a3a3;
+  margin: 0 0 0.75rem 0;
   font-weight: 400;
 }
 
 .description {
-  color: #cbd5e1;
-  font-size: 0.95rem;
-  line-height: 1.6;
+  color: #d4d4d4;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  margin: 0;
 }

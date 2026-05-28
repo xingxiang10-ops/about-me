@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
-import { animate, stagger } from 'animejs';
+import { animate, utils } from 'animejs';
 import './ParticleBackground.css';
 
-const PARTICLE_COUNT = 45;
+const SNOWFLAKE_COUNT = 120;
 
 const ParticleBackground: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -10,40 +10,33 @@ const ParticleBackground: React.FC = () => {
   useEffect(() => {
     if (!containerRef.current) return;
 
-    // Animate particles using CSS selector
-    animate('.particle', {
-      translateX: () => `${Math.random() * 200 - 100}px`,
-      translateY: () => `${Math.random() * 200 - 100}px`,
-      scale: () => [Math.random() * 0.5 + 0.5, Math.random() * 1.5 + 0.5],
-      opacity: () => [Math.random() * 0.3 + 0.1, Math.random() * 0.5 + 0.2],
-      duration: () => Math.random() * 6000 + 4000,
-      delay: stagger(80, { from: 'center' }),
-      ease: 'inOutSine',
-      loop: true,
-      alternate: true,
+    // Anime.js snow falling animation
+    animate('.snowflake', {
+      translateY: () => [utils.random(-50, 0), window.innerHeight + 100],
+      translateX: () => [utils.random(-20, 20), utils.random(-80, 80)],
+      opacity: [
+        { to: () => utils.random(0.2, 0.8), duration: 800, easing: 'linear' },
+        { to: 0, duration: 1500, delay: () => utils.random(3000, 8000), easing: 'linear' }
+      ],
+      duration: () => utils.random(6000, 12000),
+      delay: () => utils.random(0, 10000), // Stagger start times randomly
+      easing: 'linear',
+      loop: true
     });
   }, []);
 
-  const particles = Array.from({ length: PARTICLE_COUNT }, (_, i) => {
-    const size = Math.random() * 4 + 2;
-    const colors = [
-      'rgba(139, 92, 246, 0.15)',   // accent-primary
-      'rgba(59, 130, 246, 0.12)',    // accent-secondary
-      'rgba(139, 92, 246, 0.08)',    // subtle primary
-      'rgba(59, 130, 246, 0.06)',    // subtle secondary
-    ];
-    const color = colors[i % colors.length];
-
+  const snowflakes = Array.from({ length: SNOWFLAKE_COUNT }, (_, i) => {
+    const size = utils.random(2, 6);
     return (
       <div
         key={i}
-        className="particle"
+        className="snowflake"
         style={{
           width: `${size}px`,
           height: `${size}px`,
-          left: `${Math.random() * 100}%`,
-          top: `${Math.random() * 100}%`,
-          backgroundColor: color,
+          left: `${utils.random(0, 100)}%`,
+          top: `-20px`,
+          backgroundColor: '#fff',
           opacity: 0,
         }}
       />
@@ -51,8 +44,10 @@ const ParticleBackground: React.FC = () => {
   });
 
   return (
-    <div ref={containerRef} className="particle-background">
-      {particles}
+    <div className="particle-background">
+      <div ref={containerRef} className="snow-container">
+        {snowflakes}
+      </div>
     </div>
   );
 };
