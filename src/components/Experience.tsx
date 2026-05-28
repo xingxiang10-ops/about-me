@@ -57,8 +57,7 @@ const Experience: React.FC = () => {
     }
 
     // Timeline dots scale in with elastic easing
-    const dots = sectionRef.current.querySelectorAll('.timeline-dot');
-    animate(dots as unknown as string, {
+    animate('#experience-section .timeline-dot', {
       scale: [0, 1],
       duration: 600,
       delay: stagger(200, { start: 700 }),
@@ -66,8 +65,7 @@ const Experience: React.FC = () => {
     });
 
     // Timeline items slide in from left
-    const items = sectionRef.current.querySelectorAll('.timeline-content');
-    animate(items as unknown as string, {
+    animate('#experience-section .timeline-content', {
       opacity: [0, 1],
       translateX: [-30, 0],
       duration: 600,
@@ -77,7 +75,7 @@ const Experience: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="timeline-section glass-panel" style={{ opacity: 0 }}>
+    <section ref={sectionRef} id="experience-section" className="timeline-section glass-panel" style={{ opacity: 0 }}>
       <div className="section-header" style={{ opacity: 0 }}>
         <Briefcase className="section-icon" size={24} />
         <h2 className="section-title">Work Experience (Intern)</h2>

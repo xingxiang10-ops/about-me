@@ -28,8 +28,7 @@ const Skills: React.FC = () => {
     });
 
     // Section titles slide in from left
-    const titles = sectionRef.current.querySelectorAll('.section-title');
-    animate(titles as unknown as string, {
+    animate('.skills-section .section-title', {
       opacity: [0, 1],
       translateX: [-20, 0],
       duration: 600,
@@ -38,8 +37,7 @@ const Skills: React.FC = () => {
     });
 
     // Skill tags pop-in with stagger from center
-    const tags = sectionRef.current.querySelectorAll('.tag');
-    animate(tags as unknown as string, {
+    animate('.skills-section .tag', {
       scale: [0, 1],
       opacity: [0, 1],
       duration: 400,
@@ -48,8 +46,7 @@ const Skills: React.FC = () => {
     });
 
     // Language items slide in from right
-    const langItems = sectionRef.current.querySelectorAll('.language-item');
-    animate(langItems as unknown as string, {
+    animate('.skills-section .language-item', {
       opacity: [0, 1],
       translateX: [30, 0],
       duration: 500,

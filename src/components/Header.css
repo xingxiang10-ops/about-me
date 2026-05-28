@@ -28,10 +28,7 @@
   pointer-events: none;
 }
 
-.letter {
-  display: inline-block;
-  will-change: transform, opacity;
-}
+
 
 .title {
   font-size: 1.25rem;

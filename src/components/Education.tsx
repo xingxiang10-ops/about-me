@@ -63,8 +63,7 @@ const Education: React.FC = () => {
     }
 
     // Timeline dots scale in with elastic easing
-    const dots = sectionRef.current.querySelectorAll('.timeline-dot');
-    animate(dots as unknown as string, {
+    animate('#education-section .timeline-dot', {
       scale: [0, 1],
       duration: 600,
       delay: stagger(180, { start: 900 }),
@@ -72,8 +71,7 @@ const Education: React.FC = () => {
     });
 
     // Timeline items slide in from left
-    const items = sectionRef.current.querySelectorAll('.timeline-content');
-    animate(items as unknown as string, {
+    animate('#education-section .timeline-content', {
       opacity: [0, 1],
       translateX: [-30, 0],
       duration: 600,
@@ -83,7 +81,7 @@ const Education: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="timeline-section glass-panel" style={{ opacity: 0 }}>
+    <section ref={sectionRef} id="education-section" className="timeline-section glass-panel" style={{ opacity: 0 }}>
       <div className="section-header" style={{ opacity: 0 }}>
         <GraduationCap className="section-icon" size={24} />
         <h2 className="section-title">Educational History</h2>
