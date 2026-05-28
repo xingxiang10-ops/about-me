@@ -10,10 +10,8 @@ const ParticleBackground: React.FC = () => {
   useEffect(() => {
     if (!containerRef.current) return;
 
-    const particles = containerRef.current.querySelectorAll('.particle');
-
-    // Animate each particle with unique random paths
-    animate(particles as unknown as string, {
+    // Animate particles using CSS selector
+    animate('.particle', {
       translateX: () => `${Math.random() * 200 - 100}px`,
       translateY: () => `${Math.random() * 200 - 100}px`,
       scale: () => [Math.random() * 0.5 + 0.5, Math.random() * 1.5 + 0.5],

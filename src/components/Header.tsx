@@ -5,35 +5,35 @@ import './Header.css';
 
 const Header: React.FC = () => {
   const headerRef = useRef<HTMLDivElement>(null);
-  const nameRef = useRef<HTMLHeadingElement>(null);
   const nameText = 'HONG XING XIANG';
 
   useEffect(() => {
     if (!headerRef.current) return;
+    const root = headerRef.current;
 
     // Fade in the whole header panel
-    animate(headerRef.current, {
+    animate(root, {
       opacity: [0, 1],
       translateY: [30, 0],
       duration: 800,
       ease: 'outExpo',
     });
 
-    // Stagger letter animation for the name
-    if (nameRef.current) {
-      const letters = nameRef.current.querySelectorAll('.letter');
-      animate(letters as unknown as string, {
+    // Animate the name — scale up with a subtle bounce
+    const nameEl = root.querySelector('.name');
+    if (nameEl) {
+      animate(nameEl, {
         opacity: [0, 1],
         translateY: [20, 0],
-        scale: [0.8, 1],
-        duration: 600,
-        delay: stagger(35, { from: 'center' }),
+        scale: [0.9, 1],
+        duration: 700,
+        delay: 200,
         ease: 'outExpo',
       });
     }
 
     // Animate the title
-    const titleEl = headerRef.current.querySelector('.title');
+    const titleEl = root.querySelector('.title');
     if (titleEl) {
       animate(titleEl, {
         opacity: [0, 1],
@@ -44,9 +44,8 @@ const Header: React.FC = () => {
       });
     }
 
-    // Stagger contact items
-    const contactItems = headerRef.current.querySelectorAll('.contact-item');
-    animate(contactItems as unknown as string, {
+    // Stagger contact items using CSS selector scoped to header
+    animate('.header .contact-item', {
       opacity: [0, 1],
       translateY: [20, 0],
       duration: 500,
@@ -58,12 +57,8 @@ const Header: React.FC = () => {
   return (
     <header ref={headerRef} className="header glass-panel" style={{ opacity: 0 }}>
       <div className="header-content">
-        <h1 ref={nameRef} className="name text-gradient">
-          {nameText.split('').map((char, i) => (
-            <span key={i} className="letter" style={{ opacity: 0, display: 'inline-block' }}>
-              {char === ' ' ? '\u00A0' : char}
-            </span>
-          ))}
+        <h1 className="name" style={{ opacity: 0 }}>
+          {nameText}
         </h1>
         <p className="title" style={{ opacity: 0 }}>Software Systems Development Student &amp; IT Professional</p>
         

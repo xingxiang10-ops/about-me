@@ -11,6 +11,7 @@
   letter-spacing: -0.02em;
   margin-bottom: 0.5rem;
   position: relative;
+  color: #ffffff;
 }
 
 /* Subtle glow behind the name */
@@ -27,10 +28,7 @@
   pointer-events: none;
 }
 
-.letter {
-  display: inline-block;
-  will-change: transform, opacity;
-}
+
 
 .title {
   font-size: 1.25rem;
